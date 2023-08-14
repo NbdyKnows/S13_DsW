@@ -38,8 +38,6 @@ public class DatabaseLoader implements CommandLineRunner {
 
 		Banda guns = new Banda("Guns N' Roses");
 		this.repositoryB.save(guns);
-
-
 		this.repositoryN.save(new Integrante(guns, axl, voz));
 
 	}
