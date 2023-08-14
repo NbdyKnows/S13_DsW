@@ -27,7 +27,7 @@
   },
   "scripts": {
     "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js",
-    "wp":"export NODE_OPTIONS=--openssl-legacy-provider ./node_modules/webpack-cli/bin/cli.js"
+    "wp": "export NODE_OPTIONS=--openssl-legacy-provider ./node_modules/webpack-cli/bin/cli.js"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
