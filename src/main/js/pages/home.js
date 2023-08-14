@@ -5,7 +5,7 @@ const { Link } = require('react-router-dom');
 class PageHome extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { instrumentos: [], musicos: [], bandas: []};
+		this.state = { instrumentos: [], musicos: [], bandas: [] };
 	}
 	componentDidMount() {
 		client({ method: 'GET', path: '/api/instrumentos' }).done(response => {
@@ -17,7 +17,7 @@ class PageHome extends React.Component {
 		client({ method: 'GET', path: '/api/bandas' }).done(response => {
 			this.setState({ bandas: response.entity._embedded.bandas });
 		});
-	
+
 	}
 	render() {
 		return (
@@ -41,6 +41,10 @@ class PageHome extends React.Component {
 						<Link to="/nueva-banda">Nueva Banda</Link>
 					</div>
 				</div>
+
+
+
+
 			</>
 		)
 	}
@@ -94,7 +98,6 @@ class MusicoList extends React.Component {
 		)
 	}
 }
-
 class BandaList extends React.Component {
 	render() {
 		const bandas = this.props.bandas.map(banda =>

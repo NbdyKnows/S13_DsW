@@ -1,8 +1,10 @@
-@server = https://texai-miniature-succotash-x9vwjq4r6cvqj4-8080.preview.app.github.dev
+@server = https://animated-invention-p5x559jpv972rvjr-8080.app.github.dev
 @instumentos = {{server}}/api/instrumentos
 @musicos = {{server}}/api/musicos
 ###
 GET {{instumentos}}
+###
+GET {{musicos}}
 ###
 POST {{instumentos}}
 Content-Type: application/json
@@ -17,3 +19,7 @@ POST {{musicos}}
 Content-Type: application/json
 
 {"nombre": "Otro Músico"}
+###
+GET {{server}}/api/integrantes/1/instrumento
+###
+GET {{server}}/api/bandas/1/formacion
