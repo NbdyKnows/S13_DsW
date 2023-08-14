@@ -41070,7 +41070,8 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       instrumentos: [],
-      musicos: []
+      musicos: [],
+      bandas: []
     };
     return _this;
   }
@@ -41108,6 +41109,13 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       }, "Nuevo Instrumento"), /*#__PURE__*/React.createElement(Titulo, {
         entidad: "Musicos",
         emoji: "\uD83C\uDFB5"
+      }), /*#__PURE__*/React.createElement(MusicoList, {
+        musicos: this.state.musicos
+      }), /*#__PURE__*/React.createElement(Link, {
+        to: "/nuevo-musico"
+      }, "Nuevo Musico"), /*#__PURE__*/React.createElement(Titulo, {
+        entidad: "Bandas",
+        emoji: "\uD83D\uDC69\uD83C\uDFFC\u200D\uD83C\uDFA4"
       }), /*#__PURE__*/React.createElement(MusicoList, {
         musicos: this.state.musicos
       }), /*#__PURE__*/React.createElement(Link, {
