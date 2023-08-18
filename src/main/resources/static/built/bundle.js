@@ -41373,65 +41373,78 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
 var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
   useState = _require2.useState;
 var PageNuevoInstrumento = function PageNuevoInstrumento() {
-  var _useState = useState(''),
+  var _useState = useState(""),
     _useState2 = _slicedToArray(_useState, 2),
     nombre = _useState2[0],
     setNombre = _useState2[1];
-  var _useState3 = useState(''),
+  var _useState3 = useState(""),
     _useState4 = _slicedToArray(_useState3, 2),
     categoria = _useState4[0],
     setCategoria = _useState4[1];
-  var _useState5 = useState(''),
+  var _useState5 = useState(""),
     _useState6 = _slicedToArray(_useState5, 2),
     descripcion = _useState6[0],
     setDescripcion = _useState6[1];
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
     client({
-      method: 'POST',
-      path: '/api/instrumentos',
+      method: "POST",
+      path: "/api/instrumentos",
       entity: {
         nombre: nombre,
         categoria: categoria,
         descripcion: descripcion
       },
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     }).done(function () {
-      window.location = '/';
+      window.location = "/";
     });
   };
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Instrumento"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "nombre"
-  }, "Nombre"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "textbox"
+  }, /*#__PURE__*/React.createElement("input", {
     type: "text",
     id: "nombre",
     name: "nombre",
     onChange: function onChange(e) {
       return setNombre(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "categoria"
-  }, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
+    },
+    autocomplete: "off",
+    required: true
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "nombre"
+  }, "Nombre")), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+    className: "textbox"
+  }, /*#__PURE__*/React.createElement("input", {
     type: "text",
     id: "categoria",
     name: "categoria",
     onChange: function onChange(e) {
       return setCategoria(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "descripcion"
-  }, "Descripcion"), /*#__PURE__*/React.createElement("textarea", {
+    },
+    autocomplete: "off",
+    required: true
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "categoria"
+  }, "Categor\xEDa")), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+    className: "textbox"
+  }, /*#__PURE__*/React.createElement("input", {
     cols: 30,
     id: "descripcion",
     name: "descripcion",
     onChange: function onChange(e) {
       return setDescripcion(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    },
+    autocomplete: "off",
+    required: true
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "descripcion"
+  }, "Descripcion")), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    "class": "boton",
     type: "submit",
     value: "Nuevo Instrumento"
   })), /*#__PURE__*/React.createElement(Link, {
