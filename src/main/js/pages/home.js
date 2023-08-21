@@ -1,163 +1,162 @@
-const React = require('react');
-const client = require('../client');
-const { Link } = require('react-router-dom');
+const React = require("react");
+const client = require("../client");
+const { Link } = require("react-router-dom");
 
 class PageHome extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = { instrumentos: [], musicos: [], bandas: [] };
-	}
-	componentDidMount() {
-		client({ method: 'GET', path: '/api/instrumentos' }).done(response => {
-			this.setState({ instrumentos: response.entity._embedded.instrumentos });
-		});
-		client({ method: 'GET', path: '/api/musicos' }).done(response => {
-			this.setState({ musicos: response.entity._embedded.musicos });
-		});
-		client({ method: 'GET', path: '/api/bandas' }).done(response => {
-			this.setState({ bandas: response.entity._embedded.bandas });
-		});
+    constructor(props) {
+        super(props);
+        this.state = { generos: [], directores: [], peliculas: [] };
+    }
+    componentDidMount() {
+        client({ method: "GET", path: "/api/generos" }).done((response) => {
+            this.setState({ generos: response.entity._embedded.generos });
+        });
+        client({ method: "GET", path: "/api/directores" }).done((response) => {
+            this.setState({ directores: response.entity._embedded.directores });
+        });
+        client({ method: "GET", path: "/api/peliculas" }).done((response) => {
+            this.setState({ peliculas: response.entity._embedded.peliculas });
+        });
+    }
+    render() {
+        return (
+            <>
+                <h1>Demo App!</h1>
 
-	}
-	render() {
-		return (
-			<>
-				<h1>Demo App!</h1>
-
-				<div style={{"width": "100%", "display": "flex"}}>
-					<div style={{"width": "calc(100% / 3)"}}>
-						<Titulo entidad="Instrumentos" emoji="🎸" />
-						<InstrumentoList instrumentos={this.state.instrumentos} />
-						<Link to="/nuevo-instrumento">Nuevo Instrumento</Link>
-					</div>
-					<div style={{"width": "calc(100% / 3)"}}>
-						<Titulo entidad="Musicos" emoji="🎵" />
-						<MusicoList musicos={this.state.musicos} />
-						<Link to="/nuevo-musico">Nuevo Musico</Link>
-					</div>
-					<div style={{"width": "calc(100% / 3)"}}>
-						<Titulo entidad="Bandas" emoji="👩🏼‍🎤" />
-						<BandaList bandas={this.state.bandas} />
-						<Link to="/nueva-banda">Nueva Banda</Link>
-					</div>
-				</div>
-
-
-
-
-			</>
-		)
-	}
+                <div style={{ width: "100%", display: "flex" }}>
+                    <div style={{ width: "calc(100% / 3)" }}>
+                        <Titulo entidad="Directores" emoji="👨‍💼" />
+                        <DirectorList directores={this.state.directores} />
+                        <Link to="/nuevo-director">Nuevo Director</Link>
+                    </div>
+                    <div style={{ width: "calc(100% / 3)" }}>
+                        <Titulo entidad="Generos" emoji="🎉" />
+                        <GeneroList generos={this.state.generos} />
+                        <Link to="/nuevo-genero">Nuevo Género</Link>
+                    </div>
+                    <div style={{ width: "calc(100% / 3)" }}>
+                        <Titulo entidad="Peliculas" emoji="🎥" />
+                        <PeliculaList peliculas={this.state.peliculas} />
+                        <Link to="/nueva-pelicula">Nueva Pelicula</Link>
+                    </div>
+                </div>
+            </>
+        );
+    }
 }
 
 const Titulo = (props) => {
-	return (
-		<>
-			<hr />
-			<h2>{props.emoji} - {props.entidad}</h2>
-			<span>Listado completo de {props.entidad.toLowerCase()}:</span>
-			<hr />
-		</>
-	);
+    return (
+        <>
+            <hr />
+            <h2>
+                {props.emoji} - {props.entidad}
+            </h2>
+            <span>Listado completo de {props.entidad.toLowerCase()}:</span>
+            <hr />
+        </>
+    );
+};
+
+class GeneroList extends React.Component {
+    render() {
+        const generos = this.props.generos.map((genero) => (
+            <Genero key={genero._links.self.href} genero={genero} />
+        ));
+        return (
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {generos}
+                </tbody>
+            </table>
+        );
+    }
 }
 
-
-class InstrumentoList extends React.Component {
-	render() {
-		const instrumentos = this.props.instrumentos.map(instrumento =>
-			<Instrumento key={instrumento._links.self.href} instrumento={instrumento} />
-		);
-		return (
-			<table border="1">
-				<tbody>
-					<tr>
-						<th>Nombre</th>
-						<th>Acciones</th>
-					</tr>
-					{instrumentos}
-				</tbody>
-			</table>
-		)
-	}
-}
-class MusicoList extends React.Component {
-	render() {
-		const musicos = this.props.musicos.map(musico =>
-			<Musico key={musico._links.self.href} musico={musico} />
-		);
-		return (
-			<table border="1">
-				<tbody>
-					<tr>
-						<th>Nombre</th>
-						<th>Acciones</th>
-					</tr>
-					{musicos}
-				</tbody>
-			</table>
-		)
-	}
-}
-class BandaList extends React.Component {
-	render() {
-		const bandas = this.props.bandas.map(banda =>
-			<Banda key={banda._links.self.href} banda={banda} />
-		);
-		return (
-			<table border="1">
-				<tbody>
-					<tr>
-						<th>Nombre</th>
-						<th>Acciones</th>
-					</tr>
-					{bandas}
-				</tbody>
-			</table>
-		)
-	}
+class DirectorList extends React.Component {
+    render() {
+        const directores = this.props.directores.map((director) => (
+            <Director key={director._links.self.href} director={director} />
+        ));
+        return (
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {directores}
+                </tbody>
+            </table>
+        );
+    }
 }
 
-class Instrumento extends React.Component {
-	render() {
-		const id = this.props.instrumento._links.self.href.split("/").slice(-1);
-		return (
-			<tr>
-				<td>{this.props.instrumento.nombre}</td>
-				<td>
-					<Link to={`/ver-instrumento/${id}`}>Ver</Link> | 
-					<Link to={`/editar-instrumento/${id}`}>Editar</Link>
-				</td>
-			</tr>
-		)
-	}
+class PeliculaList extends React.Component {
+    render() {
+        const peliculas = this.props.peliculas.map((pelicula) => (
+            <Pelicula key={pelicula._links.self.href} pelicula={pelicula} />
+        ));
+        return (
+            <table border="1">
+                <tbody>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {peliculas}
+                </tbody>
+            </table>
+        );
+    }
 }
 
-class Musico extends React.Component {
-	render() {
-		const id = this.props.musico._links.self.href.split("/").slice(-1);
-		return (
-			<tr>
-				<td>{this.props.musico.nombre}</td>
-				<td>
-					<Link to={`/editar-musico/${id}`}>Editar</Link>
-				</td>
-			</tr>
-		)
-	}
+class Genero extends React.Component {
+    render() {
+        const id = this.props.genero._links.self.href.split("/").slice(-1);
+        return (
+            <tr>
+                <td>{this.props.genero.nombre}</td>
+                <td>
+                    <Link to={`/ver-genero/${id}`}>Ver</Link> |
+                    <Link to={`/editar-genero/${id}`}>Editar</Link>
+                </td>
+            </tr>
+        );
+    }
 }
 
-class Banda extends React.Component {
-	render() {
-		const id = this.props.banda._links.self.href.split("/").slice(-1);
-		return (
-			<tr>
-				<td>{this.props.banda.nombre}</td>
-				<td>
-					<Link to={`/ver-banda/${id}`}>Ver Banda</Link>
-				</td>
-			</tr>
-		)
-	}
+class Director extends React.Component {
+    render() {
+        const id = this.props.director._links.self.href.split("/").slice(-1);
+        return (
+            <tr>
+                <td>{this.props.director.nombre}</td>
+                <td>
+                    <Link to={`/ver-director/${id}`}>Ver</Link> |
+                    <Link to={`/editar-director/${id}`}>Editar</Link>
+                </td>
+            </tr>
+        );
+    }
+}
+
+class Pelicula extends React.Component {
+    render() {
+        const id = this.props.pelicula._links.self.href.split("/").slice(-1);
+        return (
+            <tr>
+                <td>{this.props.pelicula.nombre}</td>
+                <td>
+                    <Link to={`/ver-pelicula/${id}`}>Ver</Link>
+                </td>
+            </tr>
+        );
+    }
 }
 
 module.exports = PageHome;

@@ -3,26 +3,33 @@ const ReactDOM = require('react-dom');
 const {createBrowserRouter, RouterProvider} = require('react-router-dom');
 
 const PageHome = require('./pages/home');
-const PageVerInstrumento = require('./pages/ver-instrumento');
-const PageNuevoInstrumento = require('./pages/nuevo-instrumento');
-const PageNuevoMusico = require('./pages/nuevo-musico');
-const PageEditarMusico = require('./pages/editar-musico');
-const PageEditarInstrumento = require('./pages/editar-instrumento');
-const PageVerBanda = require('./pages/ver-banda');
-const PageNuevoIntegrante = require('./pages/nuevo-integrante');
-const PageNuevaBanda = require('./pages/nueva-banda');
+
+const PageNuevoDirector = require("./pages/nuevo-director");
+const PageVerDirector = require("./pages/ver-director");
+const PageEditarDirector = require("./pages/editar-director");
+
+const PageNuevoGenero = require("./pages/nuevo-genero");
+const PageVerGenero = require("./pages/ver-genero");
+const PageEditarGenero = require("./pages/editar-genero");
+
+const PageNuevaPelicula = require("./pages/nueva-pelicula");
+const PageVerPelicula = require("./pages/ver-pelicula");
+
 
 const router = createBrowserRouter([
-	{path: '/', element: <PageHome />},
-	{path: '/ver-instrumento/:id', element: <PageVerInstrumento />},
-	{path: '/nuevo-instrumento', element: <PageNuevoInstrumento />},
-	{path: '/nuevo-musico', element: <PageNuevoMusico />},
-	{path: '/editar-musico/:id', element: <PageEditarMusico />},
-	{path: '/editar-instrumento/:id', element: <PageEditarInstrumento />},
-	{path: '/ver-banda/:id', element: <PageVerBanda />},
-	{path: '/ver-banda/:id/nuevo-integrante', element: <PageNuevoIntegrante />},
-	{path: '/nueva-banda', element: <PageNuevaBanda />},
-])
+    { path: "/", element: <PageHome /> },
+
+    { path: "/nuevo-director", element: <PageNuevoDirector /> },
+    { path: "/ver-director/:id", element: <PageVerDirector /> },
+    { path: "/editar-director/:id", element: <PageEditarDirector /> },
+
+    { path: "/nuevo-genero", element: <PageNuevoGenero /> },
+    { path: "/ver-genero/:id", element: <PageVerGenero /> },
+    { path: "/editar-genero/:id", element: <PageEditarGenero /> },
+    
+    { path: "/nueva-pelicula", element: <PageNuevaPelicula /> },
+    { path: "/ver-pelicula/:id", element: <PageVerPelicula /> },
+]);
 
 
 ReactDOM.render(

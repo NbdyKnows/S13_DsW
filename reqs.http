@@ -1,10 +1,11 @@
-@server = https://animated-invention-p5x559jpv972rvjr-8080.app.github.dev
+@server = http://localhost:8080
 @instumentos = {{server}}/api/instrumentos
 @musicos = {{server}}/api/musicos
 ###
 GET {{instumentos}}
 ###
 GET {{musicos}}
+###
 ###
 POST {{instumentos}}
 Content-Type: application/json
@@ -23,3 +24,5 @@ Content-Type: application/json
 GET {{server}}/api/integrantes/1/instrumento
 ###
 GET {{server}}/api/bandas/1/formacion
+###
+GET {{server}}/api/peliculas/1/peli

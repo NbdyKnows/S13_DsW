@@ -5,42 +5,38 @@ const {useState} = require('react');
 
 
 
-const PageVerInstrumento = (props) => {
+const PageVerDirector = (props) => {
 
     // const id = props.match.params.id;
     let { id } = useParams();
-    const [instrumento, setInstrumento] = useState({});
+    const [director, setDirector] = useState({});
 
     client({
         method: 'GET',
-        path: '/api/instrumentos/' + id
+        path: '/api/directores/' + id
     }).done(response => {
-        setInstrumento(response.entity);
+        setDirector(response.entity);
         // console.log(response.entity);
     });
 
 
     return (
         <>
-            <h1>Ver Instrumento</h1>
+            <h1>Ver Director</h1>
             <table>
                 <tr>
                     <th>Nombre</th>
-                    <td>{instrumento.nombre}</td>
+                    <td>{director.nombre}</td>
                 </tr>
                 <tr>
-                    <th>Categoría</th>
-                    <td>{instrumento.categoria}</td>
-                </tr>
-                <tr>
-                    <th>Descripción</th>
-                    <td>{instrumento.descripcion}</td>
+                    <th>Edad</th>
+                    <td>{director.edad}</td>
                 </tr>
             </table>
 
             <Link to="/">Volver</Link>
         </>
-    )
+    );
 }
 
-module.exports = PageVerInstrumento;
+module.exports = PageVerDirector;

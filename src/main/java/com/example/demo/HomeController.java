@@ -29,4 +29,11 @@ public class HomeController {
 		return queryResult;
 	}
 
+	@GetMapping(path="/api/peliculas/{id}/peli")
+	public @ResponseBody List<Map<String, Object>> peli(@PathVariable Integer id){
+		String sql = "SELECT pelicula.nombre as NOMBRE, director.nombre as DIRECTOR, genero.nombre as GENERO, pelicula.anio as ANIO, pelicula.descripcion as DESCRIPCION FROM pelicula JOIN director ON pelicula.id_director= director.id JOIN genero ON pelicula.id_genero = genero.id WHERE pelicula.id = ?";
+		List<Map<String, Object>> queryResult = jdbcTemplate.queryForList(sql, id);
+		return queryResult;
+	}
+
 }

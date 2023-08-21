@@ -40800,41 +40800,41 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
   createBrowserRouter = _require.createBrowserRouter,
   RouterProvider = _require.RouterProvider;
 var PageHome = __webpack_require__(/*! ./pages/home */ "./src/main/js/pages/home.js");
-var PageVerInstrumento = __webpack_require__(/*! ./pages/ver-instrumento */ "./src/main/js/pages/ver-instrumento.js");
-var PageNuevoInstrumento = __webpack_require__(/*! ./pages/nuevo-instrumento */ "./src/main/js/pages/nuevo-instrumento.js");
-var PageNuevoMusico = __webpack_require__(/*! ./pages/nuevo-musico */ "./src/main/js/pages/nuevo-musico.js");
-var PageEditarMusico = __webpack_require__(/*! ./pages/editar-musico */ "./src/main/js/pages/editar-musico.js");
-var PageEditarInstrumento = __webpack_require__(/*! ./pages/editar-instrumento */ "./src/main/js/pages/editar-instrumento.js");
-var PageVerBanda = __webpack_require__(/*! ./pages/ver-banda */ "./src/main/js/pages/ver-banda.js");
-var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
-var PageNuevaBanda = __webpack_require__(/*! ./pages/nueva-banda */ "./src/main/js/pages/nueva-banda.js");
+var PageNuevoDirector = __webpack_require__(/*! ./pages/nuevo-director */ "./src/main/js/pages/nuevo-director.js");
+var PageVerDirector = __webpack_require__(/*! ./pages/ver-director */ "./src/main/js/pages/ver-director.js");
+var PageEditarDirector = __webpack_require__(/*! ./pages/editar-director */ "./src/main/js/pages/editar-director.js");
+var PageNuevoGenero = __webpack_require__(/*! ./pages/nuevo-genero */ "./src/main/js/pages/nuevo-genero.js");
+var PageVerGenero = __webpack_require__(/*! ./pages/ver-genero */ "./src/main/js/pages/ver-genero.js");
+var PageEditarGenero = __webpack_require__(/*! ./pages/editar-genero */ "./src/main/js/pages/editar-genero.js");
+var PageNuevaPelicula = __webpack_require__(/*! ./pages/nueva-pelicula */ "./src/main/js/pages/nueva-pelicula.js");
+var PageVerPelicula = __webpack_require__(/*! ./pages/ver-pelicula */ "./src/main/js/pages/ver-pelicula.js");
 var router = createBrowserRouter([{
-  path: '/',
+  path: "/",
   element: /*#__PURE__*/React.createElement(PageHome, null)
 }, {
-  path: '/ver-instrumento/:id',
-  element: /*#__PURE__*/React.createElement(PageVerInstrumento, null)
+  path: "/nuevo-director",
+  element: /*#__PURE__*/React.createElement(PageNuevoDirector, null)
 }, {
-  path: '/nuevo-instrumento',
-  element: /*#__PURE__*/React.createElement(PageNuevoInstrumento, null)
+  path: "/ver-director/:id",
+  element: /*#__PURE__*/React.createElement(PageVerDirector, null)
 }, {
-  path: '/nuevo-musico',
-  element: /*#__PURE__*/React.createElement(PageNuevoMusico, null)
+  path: "/editar-director/:id",
+  element: /*#__PURE__*/React.createElement(PageEditarDirector, null)
 }, {
-  path: '/editar-musico/:id',
-  element: /*#__PURE__*/React.createElement(PageEditarMusico, null)
+  path: "/nuevo-genero",
+  element: /*#__PURE__*/React.createElement(PageNuevoGenero, null)
 }, {
-  path: '/editar-instrumento/:id',
-  element: /*#__PURE__*/React.createElement(PageEditarInstrumento, null)
+  path: "/ver-genero/:id",
+  element: /*#__PURE__*/React.createElement(PageVerGenero, null)
 }, {
-  path: '/ver-banda/:id',
-  element: /*#__PURE__*/React.createElement(PageVerBanda, null)
+  path: "/editar-genero/:id",
+  element: /*#__PURE__*/React.createElement(PageEditarGenero, null)
 }, {
-  path: '/ver-banda/:id/nuevo-integrante',
-  element: /*#__PURE__*/React.createElement(PageNuevoIntegrante, null)
+  path: "/nueva-pelicula",
+  element: /*#__PURE__*/React.createElement(PageNuevaPelicula, null)
 }, {
-  path: '/nueva-banda',
-  element: /*#__PURE__*/React.createElement(PageNuevaBanda, null)
+  path: "/ver-pelicula/:id",
+  element: /*#__PURE__*/React.createElement(PageVerPelicula, null)
 }]);
 ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(RouterProvider, {
   router: router
@@ -40871,10 +40871,10 @@ module.exports = rest.wrap(mime, {
 
 /***/ }),
 
-/***/ "./src/main/js/pages/editar-instrumento.js":
-/*!*************************************************!*\
-  !*** ./src/main/js/pages/editar-instrumento.js ***!
-  \*************************************************/
+/***/ "./src/main/js/pages/editar-director.js":
+/*!**********************************************!*\
+  !*** ./src/main/js/pages/editar-director.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -40898,80 +40898,72 @@ var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/reac
   useParams = _require2.useParams,
   Link = _require2.Link;
 var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var PageEditarInstrumento = function PageEditarInstrumento() {
+var PageEditarDirector = function PageEditarDirector() {
   var _useParams = useParams(),
     id = _useParams.id;
   var _useState = useState({}),
     _useState2 = _slicedToArray(_useState, 2),
-    instrumento = _useState2[0],
-    setInstrumento = _useState2[1];
+    director = _useState2[0],
+    setDirector = _useState2[1];
   useEffect(function () {
     client({
       method: 'GET',
-      path: '/api/instrumentos/' + id,
+      path: '/api/directores/' + id,
       headers: {
         'Content-Type': 'application/json'
       }
     }).done(function (response) {
-      setInstrumento(response.entity);
+      setDirector(response.entity);
     });
   }, []);
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     client({
-      method: 'PATCH',
-      path: '/api/instrumentos/' + id,
+      method: "PATCH",
+      path: "/api/directores/" + id,
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
-      entity: instrumento
+      entity: director
     }).done(function () {
       return window.location = "/";
     });
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Instrumento: ", id), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Director: ", id), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     name: "nombre",
-    value: instrumento.nombre,
+    value: director.nombre,
     onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
+      setDirector(_objectSpread(_objectSpread({}, director), {}, {
         nombre: e.target.value
       }));
     }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "categoria",
-    value: instrumento.categoria,
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Edad"), /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    name: "edad",
+    step: "1",
+    value: director.edad,
     onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
-        categoria: e.target.value
-      }));
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Descripci\xF3n"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "descripcion",
-    value: instrumento.descripcion,
-    onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
-        descripcion: e.target.value
+      setDirector(_objectSpread(_objectSpread({}, director), {}, {
+        edad: e.target.value
       }));
     }
   }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Editar Instrumento ".concat(id)
+    value: "Editar Director ".concat(id)
   })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageEditarInstrumento;
+module.exports = PageEditarDirector;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/editar-musico.js":
+/***/ "./src/main/js/pages/editar-genero.js":
 /*!********************************************!*\
-  !*** ./src/main/js/pages/editar-musico.js ***!
+  !*** ./src/main/js/pages/editar-genero.js ***!
   \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -40996,56 +40988,60 @@ var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/reac
   useParams = _require2.useParams,
   Link = _require2.Link;
 var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var PageEditarMusico = function PageEditarMusico() {
+var PageEditarGenero = function PageEditarGenero() {
   var _useParams = useParams(),
     id = _useParams.id;
   var _useState = useState({}),
     _useState2 = _slicedToArray(_useState, 2),
-    musico = _useState2[0],
-    setMusico = _useState2[1];
+    director = _useState2[0],
+    setDirector = _useState2[1];
+  var _useState3 = useState({}),
+    _useState4 = _slicedToArray(_useState3, 2),
+    genero = _useState4[0],
+    setGenero = _useState4[1];
   useEffect(function () {
     client({
       method: 'GET',
-      path: '/api/musicos/' + id,
+      path: '/api/generos/' + id,
       headers: {
         'Content-Type': 'application/json'
       }
     }).done(function (response) {
-      setMusico(response.entity);
+      setGenero(response.entity);
     });
   }, []);
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     client({
-      method: 'PATCH',
-      path: '/api/musicos/' + id,
+      method: "PATCH",
+      path: "/api/generos/" + id,
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
-      entity: musico
+      entity: genero
     }).done(function () {
       return window.location = "/";
     });
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Musico: ", id), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Genero: ", id), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     name: "nombre",
-    value: musico.nombre,
+    value: genero.nombre,
     onChange: function onChange(e) {
-      setMusico(_objectSpread(_objectSpread({}, musico), {}, {
+      setGenero(_objectSpread(_objectSpread({}, genero), {}, {
         nombre: e.target.value
       }));
     }
   }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Editar Musico ".concat(id)
+    value: "Editar Genero ".concat(id)
   })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageEditarMusico;
+module.exports = PageEditarGenero;
 
 /***/ }),
 
@@ -41081,9 +41077,9 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, PageHome);
     _this = _super.call(this, props);
     _this.state = {
-      instrumentos: [],
-      musicos: [],
-      bandas: []
+      generos: [],
+      directores: [],
+      peliculas: []
     };
     return _this;
   }
@@ -41092,27 +41088,27 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
       client({
-        method: 'GET',
-        path: '/api/instrumentos'
+        method: "GET",
+        path: "/api/generos"
       }).done(function (response) {
         _this2.setState({
-          instrumentos: response.entity._embedded.instrumentos
+          generos: response.entity._embedded.generos
         });
       });
       client({
-        method: 'GET',
-        path: '/api/musicos'
+        method: "GET",
+        path: "/api/directores"
       }).done(function (response) {
         _this2.setState({
-          musicos: response.entity._embedded.musicos
+          directores: response.entity._embedded.directores
         });
       });
       client({
-        method: 'GET',
-        path: '/api/bandas'
+        method: "GET",
+        path: "/api/peliculas"
       }).done(function (response) {
         _this2.setState({
-          bandas: response.entity._embedded.bandas
+          peliculas: response.entity._embedded.peliculas
         });
       });
     }
@@ -41121,43 +41117,43 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Demo App!"), /*#__PURE__*/React.createElement("div", {
         style: {
-          "width": "100%",
-          "display": "flex"
+          width: "100%",
+          display: "flex"
         }
       }, /*#__PURE__*/React.createElement("div", {
         style: {
-          "width": "calc(100% / 3)"
+          width: "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Instrumentos",
-        emoji: "\uD83C\uDFB8"
-      }), /*#__PURE__*/React.createElement(InstrumentoList, {
-        instrumentos: this.state.instrumentos
+        entidad: "Directores",
+        emoji: "\uD83D\uDC68\u200D\uD83D\uDCBC"
+      }), /*#__PURE__*/React.createElement(DirectorList, {
+        directores: this.state.directores
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nuevo-instrumento"
-      }, "Nuevo Instrumento")), /*#__PURE__*/React.createElement("div", {
+        to: "/nuevo-director"
+      }, "Nuevo Director")), /*#__PURE__*/React.createElement("div", {
         style: {
-          "width": "calc(100% / 3)"
+          width: "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Musicos",
-        emoji: "\uD83C\uDFB5"
-      }), /*#__PURE__*/React.createElement(MusicoList, {
-        musicos: this.state.musicos
+        entidad: "Generos",
+        emoji: "\uD83C\uDF89"
+      }), /*#__PURE__*/React.createElement(GeneroList, {
+        generos: this.state.generos
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nuevo-musico"
-      }, "Nuevo Musico")), /*#__PURE__*/React.createElement("div", {
+        to: "/nuevo-genero"
+      }, "Nuevo G\xE9nero")), /*#__PURE__*/React.createElement("div", {
         style: {
-          "width": "calc(100% / 3)"
+          width: "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Bandas",
-        emoji: "\uD83D\uDC69\uD83C\uDFFC\u200D\uD83C\uDFA4"
-      }), /*#__PURE__*/React.createElement(BandaList, {
-        bandas: this.state.bandas
+        entidad: "Peliculas",
+        emoji: "\uD83C\uDFA5"
+      }), /*#__PURE__*/React.createElement(PeliculaList, {
+        peliculas: this.state.peliculas
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nueva-banda"
-      }, "Nueva Banda"))));
+        to: "/nueva-pelicula"
+      }, "Nueva Pelicula"))));
     }
   }]);
   return PageHome;
@@ -41165,300 +41161,141 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
 var Titulo = function Titulo(props) {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, props.emoji, " - ", props.entidad), /*#__PURE__*/React.createElement("span", null, "Listado completo de ", props.entidad.toLowerCase(), ":"), /*#__PURE__*/React.createElement("hr", null));
 };
-var InstrumentoList = /*#__PURE__*/function (_React$Component2) {
-  _inherits(InstrumentoList, _React$Component2);
-  var _super2 = _createSuper(InstrumentoList);
-  function InstrumentoList() {
-    _classCallCheck(this, InstrumentoList);
+var GeneroList = /*#__PURE__*/function (_React$Component2) {
+  _inherits(GeneroList, _React$Component2);
+  var _super2 = _createSuper(GeneroList);
+  function GeneroList() {
+    _classCallCheck(this, GeneroList);
     return _super2.apply(this, arguments);
   }
-  _createClass(InstrumentoList, [{
+  _createClass(GeneroList, [{
     key: "render",
     value: function render() {
-      var instrumentos = this.props.instrumentos.map(function (instrumento) {
-        return /*#__PURE__*/React.createElement(Instrumento, {
-          key: instrumento._links.self.href,
-          instrumento: instrumento
+      var generos = this.props.generos.map(function (genero) {
+        return /*#__PURE__*/React.createElement(Genero, {
+          key: genero._links.self.href,
+          genero: genero
         });
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), instrumentos));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), generos));
     }
   }]);
-  return InstrumentoList;
+  return GeneroList;
 }(React.Component);
-var MusicoList = /*#__PURE__*/function (_React$Component3) {
-  _inherits(MusicoList, _React$Component3);
-  var _super3 = _createSuper(MusicoList);
-  function MusicoList() {
-    _classCallCheck(this, MusicoList);
+var DirectorList = /*#__PURE__*/function (_React$Component3) {
+  _inherits(DirectorList, _React$Component3);
+  var _super3 = _createSuper(DirectorList);
+  function DirectorList() {
+    _classCallCheck(this, DirectorList);
     return _super3.apply(this, arguments);
   }
-  _createClass(MusicoList, [{
+  _createClass(DirectorList, [{
     key: "render",
     value: function render() {
-      var musicos = this.props.musicos.map(function (musico) {
-        return /*#__PURE__*/React.createElement(Musico, {
-          key: musico._links.self.href,
-          musico: musico
+      var directores = this.props.directores.map(function (director) {
+        return /*#__PURE__*/React.createElement(Director, {
+          key: director._links.self.href,
+          director: director
         });
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), musicos));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), directores));
     }
   }]);
-  return MusicoList;
+  return DirectorList;
 }(React.Component);
-var BandaList = /*#__PURE__*/function (_React$Component4) {
-  _inherits(BandaList, _React$Component4);
-  var _super4 = _createSuper(BandaList);
-  function BandaList() {
-    _classCallCheck(this, BandaList);
+var PeliculaList = /*#__PURE__*/function (_React$Component4) {
+  _inherits(PeliculaList, _React$Component4);
+  var _super4 = _createSuper(PeliculaList);
+  function PeliculaList() {
+    _classCallCheck(this, PeliculaList);
     return _super4.apply(this, arguments);
   }
-  _createClass(BandaList, [{
+  _createClass(PeliculaList, [{
     key: "render",
     value: function render() {
-      var bandas = this.props.bandas.map(function (banda) {
-        return /*#__PURE__*/React.createElement(Banda, {
-          key: banda._links.self.href,
-          banda: banda
+      var peliculas = this.props.peliculas.map(function (pelicula) {
+        return /*#__PURE__*/React.createElement(Pelicula, {
+          key: pelicula._links.self.href,
+          pelicula: pelicula
         });
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), bandas));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), peliculas));
     }
   }]);
-  return BandaList;
+  return PeliculaList;
 }(React.Component);
-var Instrumento = /*#__PURE__*/function (_React$Component5) {
-  _inherits(Instrumento, _React$Component5);
-  var _super5 = _createSuper(Instrumento);
-  function Instrumento() {
-    _classCallCheck(this, Instrumento);
+var Genero = /*#__PURE__*/function (_React$Component5) {
+  _inherits(Genero, _React$Component5);
+  var _super5 = _createSuper(Genero);
+  function Genero() {
+    _classCallCheck(this, Genero);
     return _super5.apply(this, arguments);
   }
-  _createClass(Instrumento, [{
+  _createClass(Genero, [{
     key: "render",
     value: function render() {
-      var id = this.props.instrumento._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.instrumento.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/ver-instrumento/".concat(id)
+      var id = this.props.genero._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.genero.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-genero/".concat(id)
       }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
-        to: "/editar-instrumento/".concat(id)
+        to: "/editar-genero/".concat(id)
       }, "Editar")));
     }
   }]);
-  return Instrumento;
+  return Genero;
 }(React.Component);
-var Musico = /*#__PURE__*/function (_React$Component6) {
-  _inherits(Musico, _React$Component6);
-  var _super6 = _createSuper(Musico);
-  function Musico() {
-    _classCallCheck(this, Musico);
+var Director = /*#__PURE__*/function (_React$Component6) {
+  _inherits(Director, _React$Component6);
+  var _super6 = _createSuper(Director);
+  function Director() {
+    _classCallCheck(this, Director);
     return _super6.apply(this, arguments);
   }
-  _createClass(Musico, [{
+  _createClass(Director, [{
     key: "render",
     value: function render() {
-      var id = this.props.musico._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.musico.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/editar-musico/".concat(id)
+      var id = this.props.director._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.director.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-director/".concat(id)
+      }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
+        to: "/editar-director/".concat(id)
       }, "Editar")));
     }
   }]);
-  return Musico;
+  return Director;
 }(React.Component);
-var Banda = /*#__PURE__*/function (_React$Component7) {
-  _inherits(Banda, _React$Component7);
-  var _super7 = _createSuper(Banda);
-  function Banda() {
-    _classCallCheck(this, Banda);
+var Pelicula = /*#__PURE__*/function (_React$Component7) {
+  _inherits(Pelicula, _React$Component7);
+  var _super7 = _createSuper(Pelicula);
+  function Pelicula() {
+    _classCallCheck(this, Pelicula);
     return _super7.apply(this, arguments);
   }
-  _createClass(Banda, [{
+  _createClass(Pelicula, [{
     key: "render",
     value: function render() {
-      var id = this.props.banda._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.banda.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/ver-banda/".concat(id)
-      }, "Ver Banda")));
+      var id = this.props.pelicula._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.pelicula.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-pelicula/".concat(id)
+      }, "Ver")));
     }
   }]);
-  return Banda;
+  return Pelicula;
 }(React.Component);
 module.exports = PageHome;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/nueva-banda.js":
-/*!******************************************!*\
-  !*** ./src/main/js/pages/nueva-banda.js ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link;
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState;
-var PageNuevaBanda = function PageNuevaBanda() {
-  var _useState = useState(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    nombre = _useState2[0],
-    setNombre = _useState2[1];
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    client({
-      method: 'POST',
-      path: '/api/bandas',
-      entity: {
-        nombre: nombre
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).done(function () {
-      window.location = '/';
-    });
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Banda"), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", null, "Banda"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "nombre",
-    name: "nombre",
-    onChange: function onChange(e) {
-      return setNombre(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("input", {
-    type: "submit",
-    value: "Nueva Banda"
-  })), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageNuevaBanda;
-
-/***/ }),
-
-/***/ "./src/main/js/pages/nuevo-instrumento.js":
-/*!************************************************!*\
-  !*** ./src/main/js/pages/nuevo-instrumento.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link;
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState;
-var PageNuevoInstrumento = function PageNuevoInstrumento() {
-  var _useState = useState(""),
-    _useState2 = _slicedToArray(_useState, 2),
-    nombre = _useState2[0],
-    setNombre = _useState2[1];
-  var _useState3 = useState(""),
-    _useState4 = _slicedToArray(_useState3, 2),
-    categoria = _useState4[0],
-    setCategoria = _useState4[1];
-  var _useState5 = useState(""),
-    _useState6 = _slicedToArray(_useState5, 2),
-    descripcion = _useState6[0],
-    setDescripcion = _useState6[1];
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    client({
-      method: "POST",
-      path: "/api/instrumentos",
-      entity: {
-        nombre: nombre,
-        categoria: categoria,
-        descripcion: descripcion
-      },
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).done(function () {
-      window.location = "/";
-    });
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Instrumento"), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "textbox"
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "nombre",
-    name: "nombre",
-    onChange: function onChange(e) {
-      return setNombre(e.target.value);
-    },
-    autocomplete: "off",
-    required: true
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "nombre"
-  }, "Nombre")), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
-    className: "textbox"
-  }, /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "categoria",
-    name: "categoria",
-    onChange: function onChange(e) {
-      return setCategoria(e.target.value);
-    },
-    autocomplete: "off",
-    required: true
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "categoria"
-  }, "Categor\xEDa")), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
-    className: "textbox"
-  }, /*#__PURE__*/React.createElement("input", {
-    cols: 30,
-    id: "descripcion",
-    name: "descripcion",
-    onChange: function onChange(e) {
-      return setDescripcion(e.target.value);
-    },
-    autocomplete: "off",
-    required: true
-  }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "descripcion"
-  }, "Descripcion")), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-    "class": "boton",
-    type: "submit",
-    value: "Nuevo Instrumento"
-  })), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageNuevoInstrumento;
-
-/***/ }),
-
-/***/ "./src/main/js/pages/nuevo-integrante.js":
-/*!***********************************************!*\
-  !*** ./src/main/js/pages/nuevo-integrante.js ***!
-  \***********************************************/
+/***/ "./src/main/js/pages/nueva-pelicula.js":
+/*!*********************************************!*\
+  !*** ./src/main/js/pages/nueva-pelicula.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41476,110 +41313,226 @@ var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/reac
   Link = _require2.Link,
   useParams = _require2.useParams;
 var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var NuevoIntegrantePage = function NuevoIntegrantePage() {
-  var _useParams = useParams(),
-    id = _useParams.id;
-  var _useState = useState([]),
+var PageNuevaPelicula = function PageNuevaPelicula() {
+  var _useState = useState(""),
     _useState2 = _slicedToArray(_useState, 2),
-    musicos = _useState2[0],
-    setMusicos = _useState2[1];
+    nombre = _useState2[0],
+    setNombre = _useState2[1];
   var _useState3 = useState([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    instrumentos = _useState4[0],
-    setInstrumentos = _useState4[1];
-  var _useState5 = useState(''),
+    generos = _useState4[0],
+    setGeneros = _useState4[1];
+  var _useState5 = useState([]),
     _useState6 = _slicedToArray(_useState5, 2),
-    idMusico = _useState6[0],
-    setIdMusico = _useState6[1];
-  var _useState7 = useState(''),
+    directores = _useState6[0],
+    setDirectores = _useState6[1];
+  var _useState7 = useState(""),
     _useState8 = _slicedToArray(_useState7, 2),
-    idInstrumento = _useState8[0],
-    setIdInstrumento = _useState8[1];
+    idGenero = _useState8[0],
+    setIdGenero = _useState8[1];
+  var _useState9 = useState(""),
+    _useState10 = _slicedToArray(_useState9, 2),
+    idDirector = _useState10[0],
+    setIdDirector = _useState10[1];
+  var _useState11 = useState(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    descripcion = _useState12[0],
+    setDescripcion = _useState12[1];
+  var _useState13 = useState(""),
+    _useState14 = _slicedToArray(_useState13, 2),
+    anio = _useState14[0],
+    setAnio = _useState14[1];
   var handleSubmit = function handleSubmit(evento) {
     evento.preventDefault();
     client({
-      method: 'POST',
-      path: '/api/integrantes',
+      method: "POST",
+      path: "/api/peliculas",
       entity: {
-        banda: 'http://localhost:8080/api/bandas/' + id,
-        musico: 'http://localhost:8080/api/musicos/' + idMusico,
-        instrumento: 'http://localhost:8080/api/instrumentos/' + idInstrumento
+        nombre: nombre,
+        genero: "http://localhost:8080/api/generos/" + idGenero,
+        director: "http://localhost:8080/api/instrumentos/" + idDirector,
+        descripcion: descripcion,
+        anio: anio
       },
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     }).done(function () {
-      window.location = '/';
+      window.location = "/";
     });
   };
   useEffect(function () {
     client({
-      method: 'GET',
-      path: '/api/musicos'
+      method: "GET",
+      path: "/api/generos"
     }).done(function (response) {
-      var musicos2 = [];
-      response.entity._embedded.musicos.map(function (musico) {
-        musicos2.push({
-          value: musico._links.self.href.split('/').slice(-1),
-          label: musico.nombre
+      var generos2 = [];
+      response.entity._embedded.generos.map(function (genero) {
+        generos2.push({
+          value: genero._links.self.href.split("/").slice(-1),
+          label: genero.nombre
         });
       });
-      setMusicos(musicos2);
+      setGeneros(generos2);
     });
     client({
-      method: 'GET',
-      path: '/api/instrumentos'
+      method: "GET",
+      path: "/api/directores"
     }).done(function (response) {
-      var instrumentos2 = [];
-      response.entity._embedded.instrumentos.map(function (instrumento) {
-        instrumentos2.push({
-          value: instrumento._links.self.href.split('/').slice(-1),
-          label: instrumento.nombre
+      var directores2 = [];
+      response.entity._embedded.directores.map(function (director) {
+        directores2.push({
+          value: director._links.self.href.split("/").slice(-1),
+          label: director.nombre
         });
       });
-      setInstrumentos(instrumentos2);
+      setDirectores(directores2);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Integrante"), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nueva Pelicula"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "musico"
-  }, "Musico"), /*#__PURE__*/React.createElement("select", {
-    name: "musico",
-    id: "musico",
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "nombre"
+  }, "Nombre: "), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "nombre",
+    name: "nombre",
     onChange: function onChange(e) {
-      setIdMusico(e.target.value);
+      return setNombre(e.target.value);
     }
-  }, /*#__PURE__*/React.createElement("option", null, "Seleccione:"), musicos.map(function (musico) {
-    return /*#__PURE__*/React.createElement("option", {
-      key: musico.value,
-      value: musico.value
-    }, musico.label);
-  })), /*#__PURE__*/React.createElement("label", null, "Instrumento"), /*#__PURE__*/React.createElement("select", {
-    name: "instrumento",
-    id: "instrumento",
+  })), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "director"
+  }, "Director"), /*#__PURE__*/React.createElement("select", {
+    name: "director",
+    id: "director",
     onChange: function onChange(e) {
-      setIdInstrumento(e.target.value);
+      setIdDirector(e.target.value);
     }
-  }, /*#__PURE__*/React.createElement("option", null, "Seleccione:"), instrumentos.map(function (instrumento) {
+  }, /*#__PURE__*/React.createElement("option", null, "Seleccione:"), directores.map(function (director) {
     return /*#__PURE__*/React.createElement("option", {
-      key: instrumento.value,
-      value: instrumento.value
-    }, instrumento.label);
+      key: director.value,
+      value: director.value
+    }, director.label);
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Genero"), /*#__PURE__*/React.createElement("select", {
+    name: "Genero",
+    id: "Genero",
+    onChange: function onChange(e) {
+      setIdGenero(e.target.value);
+    }
+  }, /*#__PURE__*/React.createElement("option", null, "Seleccione:"), generos.map(function (genero) {
+    return /*#__PURE__*/React.createElement("option", {
+      key: genero.value,
+      value: genero.value
+    }, genero.label);
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "descripcion"
+  }, "Descripcion: "), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "descripcion",
+    name: "descripcion",
+    onChange: function onChange(e) {
+      return setDescripcion(e.target.value);
+    }
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "anio"
+  }, "A\xF1o: "), /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    id: "anio",
+    name: "anio",
+    step: "1",
+    onChange: function onChange(e) {
+      return setAnio(e.target.value);
+    }
   })), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Nuevo Integrante"
+    value: "Nueva Pelicula"
   })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = NuevoIntegrantePage;
+module.exports = PageNuevaPelicula;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/nuevo-musico.js":
+/***/ "./src/main/js/pages/nuevo-director.js":
+/*!*********************************************!*\
+  !*** ./src/main/js/pages/nuevo-director.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require.Link;
+var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require2.useState;
+var PageNuevoDirector = function PageNuevoDirector() {
+  var _useState = useState(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    nombre = _useState2[0],
+    setNombre = _useState2[1];
+  var _useState3 = useState(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    edad = _useState4[0],
+    setEdad = _useState4[1];
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    client({
+      method: "POST",
+      path: "/api/directores",
+      entity: {
+        nombre: nombre,
+        edad: edad
+      },
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).done(function () {
+      window.location = "/";
+    });
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Director"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "nombre"
+  }, "Nombre: "), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "nombre",
+    name: "nombre",
+    onChange: function onChange(e) {
+      return setNombre(e.target.value);
+    }
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "edad"
+  }, "Edad: "), /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    id: "edad",
+    name: "edad",
+    step: "1",
+    onChange: function onChange(e) {
+      return setEdad(e.target.value);
+    }
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Nuevo Director"
+  })), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = PageNuevoDirector;
+
+/***/ }),
+
+/***/ "./src/main/js/pages/nuevo-genero.js":
 /*!*******************************************!*\
-  !*** ./src/main/js/pages/nuevo-musico.js ***!
+  !*** ./src/main/js/pages/nuevo-genero.js ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -41596,50 +41549,140 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
   Link = _require.Link;
 var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
   useState = _require2.useState;
-var PageNuevoMusico = function PageNuevoMusico() {
-  var _useState = useState(''),
+var PageNuevoGenero = function PageNuevoGenero() {
+  var _useState = useState(""),
     _useState2 = _slicedToArray(_useState, 2),
     nombre = _useState2[0],
     setNombre = _useState2[1];
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
     client({
-      method: 'POST',
-      path: '/api/musicos',
+      method: "POST",
+      path: "/api/generos",
       entity: {
         nombre: nombre
       },
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     }).done(function () {
-      window.location = '/';
+      window.location = "/";
     });
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo M\xFAsico"), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Genero"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "nombre"
+  }, "Nombre: "), /*#__PURE__*/React.createElement("input", {
     type: "text",
     id: "nombre",
     name: "nombre",
     onChange: function onChange(e) {
       return setNombre(e.target.value);
     }
-  }), /*#__PURE__*/React.createElement("input", {
+  })), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Nuevo M\xFAsico"
+    value: "Nuevo Genero"
   })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageNuevoMusico;
+module.exports = PageNuevoGenero;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/ver-banda.js":
-/*!****************************************!*\
-  !*** ./src/main/js/pages/ver-banda.js ***!
-  \****************************************/
+/***/ "./src/main/js/pages/ver-director.js":
+/*!*******************************************!*\
+  !*** ./src/main/js/pages/ver-director.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require.Link,
+  useParams = _require.useParams;
+var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require2.useState;
+var PageVerDirector = function PageVerDirector(props) {
+  // const id = props.match.params.id;
+  var _useParams = useParams(),
+    id = _useParams.id;
+  var _useState = useState({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    director = _useState2[0],
+    setDirector = _useState2[1];
+  client({
+    method: 'GET',
+    path: '/api/directores/' + id
+  }).done(function (response) {
+    setDirector(response.entity);
+    // console.log(response.entity);
+  });
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Director"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, director.nombre)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Edad"), /*#__PURE__*/React.createElement("td", null, director.edad))), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = PageVerDirector;
+
+/***/ }),
+
+/***/ "./src/main/js/pages/ver-genero.js":
+/*!*****************************************!*\
+  !*** ./src/main/js/pages/ver-genero.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require.Link,
+  useParams = _require.useParams;
+var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require2.useState;
+var PageVerGenero = function PageVerGenero(props) {
+  // const id = props.match.params.id;
+  var _useParams = useParams(),
+    id = _useParams.id;
+  var _useState = useState({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    genero = _useState2[0],
+    setGenero = _useState2[1];
+  client({
+    method: 'GET',
+    path: '/api/generos/' + id
+  }).done(function (response) {
+    setGenero(response.entity);
+    // console.log(response.entity);
+  });
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Genero"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, genero.nombre))), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = PageVerGenero;
+
+/***/ }),
+
+/***/ "./src/main/js/pages/ver-pelicula.js":
+/*!*******************************************!*\
+  !*** ./src/main/js/pages/ver-pelicula.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41657,91 +41700,28 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
 var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
   useState = _require2.useState,
   useEffect = _require2.useEffect;
-var PageVerBanda = function PageVerBanda() {
-  var _useParams = useParams(),
-    id = _useParams.id;
-  var _useState = useState({}),
-    _useState2 = _slicedToArray(_useState, 2),
-    banda = _useState2[0],
-    setBanda = _useState2[1];
-  var _useState3 = useState([]),
-    _useState4 = _slicedToArray(_useState3, 2),
-    integrantes = _useState4[0],
-    setIntegrantes = _useState4[1];
-  useEffect(function () {
-    url_banda = '/api/bandas/' + id;
-    client({
-      method: 'GET',
-      path: url_banda
-    }).done(function (response) {
-      return setBanda(response.entity);
-    });
-    client({
-      method: 'GET',
-      path: url_banda + '/formacion'
-    }).done(function (response) {
-      return setIntegrantes(response.entity);
-    });
-  }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Banda"), /*#__PURE__*/React.createElement("table", {
-    border: "1"
-  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, banda.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
-    border: "1"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Musico"), /*#__PURE__*/React.createElement("th", null, "Instrumento"))), /*#__PURE__*/React.createElement("tbody", null, integrantes.map(function (integrante) {
-    return /*#__PURE__*/React.createElement("tr", {
-      key: integrante.ID
-    }, /*#__PURE__*/React.createElement("td", null, integrante.MUSICO), /*#__PURE__*/React.createElement("td", null, integrante.INSTRUMENTO));
-  }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
-    to: "/ver-banda/".concat(id, "/nuevo-integrante")
-  }, "Agregar integrante"), " |", /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageVerBanda;
-
-/***/ }),
-
-/***/ "./src/main/js/pages/ver-instrumento.js":
-/*!**********************************************!*\
-  !*** ./src/main/js/pages/ver-instrumento.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link,
-  useParams = _require.useParams;
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState;
-var PageVerInstrumento = function PageVerInstrumento(props) {
+var PageVerPelicula = function PageVerPelicula(props) {
   // const id = props.match.params.id;
   var _useParams = useParams(),
     id = _useParams.id;
-  var _useState = useState({}),
+  var _useState = useState([]),
     _useState2 = _slicedToArray(_useState, 2),
-    instrumento = _useState2[0],
-    setInstrumento = _useState2[1];
-  client({
-    method: 'GET',
-    path: '/api/instrumentos/' + id
-  }).done(function (response) {
-    setInstrumento(response.entity);
-    // console.log(response.entity);
-  });
-
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Instrumento"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, instrumento.nombre)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Categor\xEDa"), /*#__PURE__*/React.createElement("td", null, instrumento.categoria)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Descripci\xF3n"), /*#__PURE__*/React.createElement("td", null, instrumento.descripcion))), /*#__PURE__*/React.createElement(Link, {
+    pelicula = _useState2[0],
+    setPelicula = _useState2[1];
+  useEffect(function () {
+    url_peli = "/api/peliculas/" + id;
+    client({
+      method: "GET",
+      path: url_peli + "/peli"
+    }).done(function (response) {
+      return setPelicula(response.entity);
+    });
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Pelicula"), pelicula.length > 0 && /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre: "), /*#__PURE__*/React.createElement("td", null, pelicula[0].NOMBRE)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Director: "), /*#__PURE__*/React.createElement("td", null, pelicula[0].DIRECTOR)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Genero: "), /*#__PURE__*/React.createElement("td", null, pelicula[0].GENERO)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "A\xF1o de estreno: "), /*#__PURE__*/React.createElement("td", null, pelicula[0].ANIO)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Descripci\xF3n: "), /*#__PURE__*/React.createElement("td", null, pelicula[0].DESCRIPCION)))), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageVerInstrumento;
+module.exports = PageVerPelicula;
 
 /***/ }),
 
